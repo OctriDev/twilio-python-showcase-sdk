@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 from typing import Any
 
 import httpx
@@ -56,7 +57,14 @@ def _build_path(case: dict[str, Any]) -> str:
 
 
 def _normalize(url: str) -> str:
-    return url.replace("%20", "+")
+    # httpx encodes literal path text a URL cannot carry (DigitalOcean's
+    # /<upload_url>) that other clients leave to the wire; one path either way.
+    return re.sub(
+        r"%(3C|3E|22|60|5E|7C)",
+        lambda match: chr(int(match.group(1), 16)),
+        url,
+        flags=re.IGNORECASE,
+    ).replace("%20", "+")
 
 
 @pytest.mark.parametrize("case", FIXTURE["cases"], ids=lambda case: case["id"])
