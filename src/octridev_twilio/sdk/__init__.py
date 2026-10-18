@@ -128,4 +128,4 @@ class AsyncTwilio(_TwilioBase):
         self.usage_triggers = _AsyncUsageTriggersNamespace(config)
 
 
-__all__ = ["Twilio", "AsyncTwilio"]
+__all__ = ["AsyncTwilio", "Twilio"]

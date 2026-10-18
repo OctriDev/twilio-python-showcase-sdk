@@ -38,6 +38,24 @@ class NotGiven:
     # every other branch of a field refuses would decode as an omitted field.
     __pydantic_config__: ClassVar[dict[str, bool]] = {"strict": True}
 
+    @classmethod
+    def __get_pydantic_core_schema__(cls, source: Any, handler: Any) -> Any:
+        # A null in an optional field that does not allow null reads as
+        # omitted, as in every other SDK: Intercom answers an unassigned
+        # conversation with `admin_assignee_id: null`. A plain validator, since
+        # pydantic reuses a wrapped dataclass schema by reference unwrapped.
+        from pydantic_core import core_schema
+
+        def validate(value: object) -> NotGiven:
+            if value is None or isinstance(value, NotGiven):
+                return NOT_GIVEN
+            raise ValueError("not an omitted value")
+
+        return core_schema.no_info_plain_validator_function(
+            validate,
+            serialization=core_schema.plain_serializer_function_ser_schema(lambda _value: {}),
+        )
+
 
 NOT_GIVEN: Final[NotGiven] = NotGiven()
 
