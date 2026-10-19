@@ -25,17 +25,10 @@ from octridev_twilio.client import BasicCredentials
 config = ClientConfig(
     # Optional: replaces the default server and any server an operation declares.
     base_url="https://api.twilio.com",
-    auth=ClientAuthConfig(
-        account_sid_auth_token=BasicCredentials(
-            username=os.environ["API_USERNAME"], password=os.environ["API_PASSWORD"]
-        )
-    ),
+    auth=ClientAuthConfig(account_sid_auth_token=BasicCredentials(username=os.environ["API_USERNAME"], password=os.environ["API_PASSWORD"])),
 )
 client = Twilio(config)
-result = client.addresses.dependent_phone_numbers.list(
-    account_sid="ACaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    address_sid="ADaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-)
+result = client.addresses.dependent_phone_numbers.list(account_sid="ACaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", address_sid="ADaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 print(result)
 ```
 
