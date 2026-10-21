@@ -50,7 +50,7 @@ def _validate_pydantic_response(value: Any, response_type: Any) -> Any:
         ) from error
 
 
-async def create_calls_user_defined_message_subscriptions(
+async def create_call_user_defined_message_subscription(
     _client_config: ClientConfig,
     account_sid: str,
     call_sid: str,
@@ -101,7 +101,7 @@ async def create_calls_user_defined_message_subscriptions(
             }
         ),
         content_type="application/x-www-form-urlencoded",
-        operation_id="create_calls_user_defined_message_subscriptions",
+        operation_id="create_call_user_defined_message_subscription",
         response_decoder="json",
         request_options=request_options,
         config=_client_config,
@@ -117,7 +117,7 @@ async def create_calls_user_defined_message_subscriptions(
     )
 
 
-def create_calls_user_defined_message_subscriptions_sync(
+def create_call_user_defined_message_subscription_sync(
     _client_config: ClientConfig,
     account_sid: str,
     call_sid: str,
@@ -168,7 +168,7 @@ def create_calls_user_defined_message_subscriptions_sync(
             }
         ),
         content_type="application/x-www-form-urlencoded",
-        operation_id="create_calls_user_defined_message_subscriptions",
+        operation_id="create_call_user_defined_message_subscription",
         response_decoder="json",
         request_options=request_options,
         config=_client_config,
@@ -261,8 +261,8 @@ def delete_calls_user_defined_message_subscriptions_sync(
 
 
 __all__ = [
-    "create_calls_user_defined_message_subscriptions",
-    "create_calls_user_defined_message_subscriptions_sync",
+    "create_call_user_defined_message_subscription",
+    "create_call_user_defined_message_subscription_sync",
     "delete_calls_user_defined_message_subscriptions",
     "delete_calls_user_defined_message_subscriptions_sync",
 ]
