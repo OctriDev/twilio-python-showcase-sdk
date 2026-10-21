@@ -62,8 +62,8 @@ from ..methods.calls.calls_transcriptions import (
     update_calls_transcriptions_sync,
 )
 from ..methods.calls.calls_user_defined_message_subscriptions import (
-    create_calls_user_defined_message_subscriptions,
-    create_calls_user_defined_message_subscriptions_sync,
+    create_call_user_defined_message_subscription,
+    create_call_user_defined_message_subscription_sync,
     delete_calls_user_defined_message_subscriptions,
     delete_calls_user_defined_message_subscriptions_sync,
 )
@@ -207,16 +207,16 @@ class _AsyncCallsUserDefinedMessagesNamespace:
 
 class _CallsUserDefinedMessageSubscriptionsNamespace:
     def __init__(self, config: ClientConfig) -> None:
-        self.create = partial(create_calls_user_defined_message_subscriptions_sync, config)
-        self.create.__doc__ = create_calls_user_defined_message_subscriptions_sync.__doc__
+        self.create = partial(create_call_user_defined_message_subscription_sync, config)
+        self.create.__doc__ = create_call_user_defined_message_subscription_sync.__doc__
         self.delete = partial(delete_calls_user_defined_message_subscriptions_sync, config)
         self.delete.__doc__ = delete_calls_user_defined_message_subscriptions_sync.__doc__
 
 
 class _AsyncCallsUserDefinedMessageSubscriptionsNamespace:
     def __init__(self, config: ClientConfig) -> None:
-        self.create = partial(create_calls_user_defined_message_subscriptions, config)
-        self.create.__doc__ = create_calls_user_defined_message_subscriptions.__doc__
+        self.create = partial(create_call_user_defined_message_subscription, config)
+        self.create.__doc__ = create_call_user_defined_message_subscription.__doc__
         self.delete = partial(delete_calls_user_defined_message_subscriptions, config)
         self.delete.__doc__ = delete_calls_user_defined_message_subscriptions.__doc__
 
