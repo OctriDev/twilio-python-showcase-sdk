@@ -25,7 +25,11 @@ from octridev_twilio.client import BasicCredentials
 config = ClientConfig(
     # Optional: replaces the default server and any server an operation declares.
     base_url="https://api.twilio.com",
-    auth=ClientAuthConfig(account_sid_auth_token=BasicCredentials(username=os.environ["TWILIO_ACCOUNT_SID"], password=os.environ["TWILIO_AUTH_TOKEN"])),
+    auth=ClientAuthConfig(
+        account_sid_auth_token=BasicCredentials(
+            username=os.environ["TWILIO_ACCOUNT_SID"], password=os.environ["TWILIO_AUTH_TOKEN"]
+        )
+    ),
 )
 client = Twilio(config)
 result = client.messages.list(account_sid="ACaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
